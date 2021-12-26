@@ -1,0 +1,29 @@
+<%- include("./layout/header.ejs")  %> 
+    <main>
+        <form action="/" method="post">
+            <input type="text" class="form-control" name="pLanguage" placeholder="Programming language" required>
+            <a href="#"><button type="submit" id="add-del" class="btn btn-success" title="Add language">Add <i class="fas fa-plus-square"></i> </button></a>
+            <a href="/del" title="Delete language"><button type="button" class="btn btn-danger">Del <i class="fas fa-trash-alt"></i> </button></a>
+        </form>
+        <ul class="ul-main">
+            <% if(plArray.length == 0) { %>
+                <li>No data found...</li>                 
+            <% } else if (plArray.length < 11) { %>
+                <% for(let i = 0; i < plArray.length; i++) { %>
+                    <a href="https://www.google.com/search?q=<%= plArray[i] %>+programming+language" target="_blank">
+                        <div class="card px-1">
+                            <li><i class="fas fa-link"></i> <%= plArray[i] %></li>
+                        </div>
+                    </a> 
+                <% } %> 
+            <% } else {  %> 
+                <li class="del-warn"><i class="fas fa-exclamation-triangle"></i> 
+                    Collection is full. Delete last data for further procedure.
+                </li>
+                <script>
+                    document.getElementById("add-del").disabled = true;
+                </script> 
+            <% } %> 
+        </ul>
+    </main>
+    <%- include("./layout/footer.ejs") %> 
